@@ -11,4 +11,15 @@
     width: 6%;
     height: 40px;
     border: 0px;
+    background-color: pink;
+    border: 1px solid black;
+}
+
+.painted-small-square {
+    display: flex;
+    width: 6%;
+    height: 40px;
+    border: 0px;
+    background-color: black;
+    border: 1px solid black;
 }
