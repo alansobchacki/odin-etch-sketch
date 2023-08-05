@@ -40,7 +40,7 @@ function setMaximumSquares() {
     totalSquares = squares * squares;
     let squareDimensions = (((squares / totalSquares) * 100) + '%');
     let oldGrid = document.querySelectorAll(".small-square");
-    if (totalSquares <= 4096 && totalSquares >= 16 && totalSquares % 4 == 0) {
+    if (totalSquares <= 10000 && totalSquares >= 16 && totalSquares % 4 == 0) {
         oldGrid.forEach(square => {
             square.remove();
         }) 
