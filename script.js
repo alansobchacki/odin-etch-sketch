@@ -12,13 +12,17 @@ function setUpSquares(squares) {
 setUpSquares(256);
 
 //this section will allow the user to paint the squares when he moves his mouse over them
-const square = document.querySelectorAll('.small-square');
-const squareArray = [...square];
-squareArray.forEach(square =>
-    square.addEventListener('mousemove', (e) => {
-        square.classList.add('painted-small-square');
-    })
-);
+function paintingSquares() {
+    const square = document.querySelectorAll('.small-square');
+    const squareArray = [...square];
+    squareArray.forEach(square =>
+        square.addEventListener('mousemove', (e) => {
+            square.classList.add('painted-small-square');
+        })
+    )
+}
+
+paintingSquares();
 
 function setMaximumSquares() {
     let newSquares = prompt("Please enter the number of grids you want (for example, '64' will result in a 64x64 drawing pad)");
@@ -29,6 +33,7 @@ function setMaximumSquares() {
             square.remove();
         }) 
         setUpSquares(newSquares);
+        paintingSquares();
     } else {
         alert("Error. Please input a valid number.");
     }
