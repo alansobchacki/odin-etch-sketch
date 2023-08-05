@@ -1,4 +1,4 @@
-// this section is used to build our drawing blocks
+// this function is used to build the boxes inside our drawing board
 function setUpSquares(squares) {
     const gridContainer = document.querySelector('#main-container');
 
@@ -9,9 +9,19 @@ function setUpSquares(squares) {
     }
 } 
 
+//this function is used to set the dimensions of the squares
+//they are calculated in the setMaximumSquares() function
+function setSquareDimensions(percentage) {
+    const squareSize = document.querySelector(':root');
+    squareSize.style.setProperty('--width', percentage);
+    squareSize.style.setProperty('--height', percentage);
+}
+
+//these values are hard-coded initially, but are dinamically changed depending on the user's prompt
+setSquareDimensions('6.25%');
 setUpSquares(256);
 
-//this section will allow the user to paint the squares when he moves his mouse over them
+//this function is used to allow the user to paint squares by hovering their mouse pointer on the boxes
 function paintingSquares() {
     const square = document.querySelectorAll('.small-square');
     const squareArray = [...square];
@@ -24,15 +34,18 @@ function paintingSquares() {
 
 paintingSquares();
 
+//this function allows users to change the default sizing of the drawing board
 function setMaximumSquares() {
-    let newSquares = prompt("Please enter the number of grids you want (for example, '64' will result in a 64x64 drawing pad)");
-    newSquares = newSquares * newSquares;
+    let squares = prompt("Please enter the number of grids you want (for example, '64' will result in a 64x64 drawing pad)");
+    totalSquares = squares * squares;
+    let squareDimensions = (((squares / totalSquares) * 100) + '%');
     let oldGrid = document.querySelectorAll(".small-square");
-    if (newSquares <= 4096 && newSquares >= 2) {
+    if (totalSquares <= 4096 && totalSquares >= 16 && totalSquares % 4 == 0) {
         oldGrid.forEach(square => {
             square.remove();
         }) 
-        setUpSquares(newSquares);
+        setSquareDimensions(squareDimensions);
+        setUpSquares(totalSquares);
         paintingSquares();
     } else {
         alert("Error. Please input a valid number.");
