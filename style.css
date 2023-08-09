@@ -9,6 +9,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    background-color: #121212;
 }
 
 #main-container {
@@ -18,17 +19,13 @@ body {
     margin: 2%;
     height: 960px;
     width: 960px;
+    border: 2px solid black;
     background-color: lightgray;
 }
 
 .small-square {
+    --canvas-color: rgb(207, 149, 149);
     width: var(--width);
     height: var(--height);
-    background-color: rgb(207, 149, 149);
-}
-
-.painted-small-square {
-    width: var(--width);
-    height: var(--height);
-    background-color: black;
+    background-color: var(--canvas-color);
 }

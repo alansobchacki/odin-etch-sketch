@@ -17,27 +17,32 @@ function setSquareDimensions(percentage) {
     squareSize.style.setProperty('--height', percentage);
 }
 
-//these values are hard-coded initially, but are dinamically changed depending on the user's prompt
+//these values are hard-coded initially, but are dinamically changed depending on the user's prompts
 setSquareDimensions('6.25%');
 setUpSquares(256);
+paintingColor('black');
+
+//this constant allows the user to change the color of the painter
+const setPainterColor = document.querySelector('#painter-color');
+setPainterColor.addEventListener('change', () => {
+    let painterColor = event.target.value;
+    paintingColor(painterColor);
+})
 
 //this function is used to allow the user to paint squares by hovering their mouse pointer on the boxes
-function paintingSquares() {
-    const square = document.querySelectorAll('.small-square');
-    const squareArray = [...square];
-    squareArray.forEach(square =>
+function paintingColor(color) {
+    let painting = document.querySelectorAll('.small-square');
+    painting.forEach(square =>
         square.addEventListener('mousemove', (e) => {
-            square.classList.add('painted-small-square');
+            square.style.backgroundColor = color;
         })
     )
 }
 
-paintingSquares();
-
 //this function allows users to change the default sizing of the drawing board
 function setMaximumSquares() {
-    let squares = prompt("Please enter the number of grids you want (for example, '64' will result in a 64x64 drawing pad)");
-    totalSquares = squares * squares;
+    let squares = prompt("Please enter the even number of grids you want (for example, '64' will result in a 64x64 drawing pad)");
+    let totalSquares = squares * squares;
     let squareDimensions = (((squares / totalSquares) * 100) + '%');
     let oldGrid = document.querySelectorAll(".small-square");
     if (totalSquares <= 10000 && totalSquares >= 16 && totalSquares % 4 == 0) {
@@ -46,7 +51,7 @@ function setMaximumSquares() {
         }) 
         setSquareDimensions(squareDimensions);
         setUpSquares(totalSquares);
-        paintingSquares();
+        paintingColor();
     } else {
         alert("Error. Please input a valid number.");
     }
@@ -56,3 +61,19 @@ const maximumSquares = document.querySelector('#maximum-squares');
 maximumSquares.addEventListener('click', () => {
     setMaximumSquares();
 });
+
+
+//this function allows the user to change the canvas color
+function changeCanvasColor(color) {
+    let canvas = document.querySelectorAll('.small-square');
+    canvas.forEach(square => {
+        square.style.setProperty('--canvas-color', color);
+    })
+}
+
+const setCanvasColor = document.querySelector('#canvas-color');
+setCanvasColor.addEventListener('change', () => {
+    let canvasColor = event.target.value;
+    changeCanvasColor(canvasColor);
+})
+
