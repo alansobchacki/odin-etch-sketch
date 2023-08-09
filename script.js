@@ -18,9 +18,12 @@ function setSquareDimensions(percentage) {
 }
 
 //these values are hard-coded initially, but are dinamically changed depending on the user's prompts
+let rainbowMode = false;
+let rainbowColors = ["blue", "yellow", "pink", "purple", "green", "red", "orange"];
 setSquareDimensions('6.25%');
 setUpSquares(256);
 paintingColor('black');
+
 
 //this constant allows the user to change the color of the painter
 const setPainterColor = document.querySelector('#painter-color');
@@ -31,12 +34,22 @@ setPainterColor.addEventListener('change', () => {
 
 //this function is used to allow the user to paint squares by hovering their mouse pointer on the boxes
 function paintingColor(color) {
+    if (rainbowMode != true) {
     let painting = document.querySelectorAll('.small-square');
     painting.forEach(square =>
         square.addEventListener('mousemove', (e) => {
             square.style.backgroundColor = color;
         })
     )
+    } else {
+        let painting = document.querySelectorAll('.small-square');
+        painting.forEach(square =>
+            square.addEventListener('mousemove', (e) => {
+                let randomRainbowColor = rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
+                square.style.backgroundColor = randomRainbowColor;
+            })
+        )
+    }
 }
 
 //this function allows users to change the default sizing of the drawing board
@@ -51,7 +64,7 @@ function setMaximumSquares() {
         }) 
         setSquareDimensions(squareDimensions);
         setUpSquares(totalSquares);
-        paintingColor();
+        paintingColor('black');
     } else {
         alert("Error. Please input a valid number.");
     }
@@ -77,3 +90,17 @@ setCanvasColor.addEventListener('change', () => {
     changeCanvasColor(canvasColor);
 })
 
+//this function allows the user to toggle between rainbow mode or regular painter mode
+function toggleRainbowMode() {
+    rainbowMode = !rainbowMode;
+    if (rainbowMode == false) {
+        paintingColor('black')
+    } else {
+    paintingColor();
+    }
+}
+
+const toggleRainbow = document.querySelector('#rainbow-mode');
+toggleRainbow.addEventListener('click', () => {
+    toggleRainbowMode();
+});

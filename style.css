@@ -24,7 +24,7 @@ body {
 }
 
 .small-square {
-    --canvas-color: rgb(207, 149, 149);
+    --canvas-color: rgb(235, 228, 228);
     width: var(--width);
     height: var(--height);
     background-color: var(--canvas-color);
