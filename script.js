@@ -54,7 +54,7 @@ function paintingColor(color) {
 
 //this function allows users to change the default sizing of the drawing board
 function setMaximumSquares() {
-    let squares = prompt("Please enter the even number of grids you want (for example, '64' will result in a 64x64 drawing pad)");
+    let squares = prompt("Please enter an even number of grids you want between 4 and 100 (for example, '64' will result in a 64x64 drawing pad)");
     let totalSquares = squares * squares;
     let squareDimensions = (((squares / totalSquares) * 100) + '%');
     let oldGrid = document.querySelectorAll(".small-square");
