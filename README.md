@@ -33,7 +33,9 @@ These were the project requirements:
 - [x] Use Flexbox to make the divs appear as a grid (versus just one on each line). Despite the name, do not be tempted to research or use CSS Grid.
 - [x] Set up a “hover” effect so that the grid divs change color when your mouse passes over them, leaving a (pixelated) trail through your grid like a pen would.
 - [x] Add a button on the top of the screen that will send the user a popup asking for the number of squares per side for the new grid.
+
 -- Extra credit
+
 - [x] Add a button that randomize the squares’ RGB values with each interaction.
 
 
